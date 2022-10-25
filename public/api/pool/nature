@@ -1,0 +1,28 @@
+{
+ "name": "nature",
+ "size": 4,
+ "posts": [
+  {
+   "description": "Photo by kazuend is licensed under Unsplash License\nsource: https://unsplash.com/photos/19SC2oaVZW0",
+   "file_url": "/images/nature/kazuend-19SC2oaVZW0-unsplash.jpg",
+   "name": "Bamboo leaf canopy",
+   "id": 1
+  },
+  {
+   "description": "Photo by Aaron Burden is licensed under Unsplash License\nsource: https://unsplash.com/photos/Kp9z6zcUfGw",
+   "file_url": "/images/nature/aaron-burden-Kp9z6zcUfGw-unsplash.jpg",
+   "id": 2
+  },
+  {
+   "description": "Photo by Reka Marincsak is licensed under Unsplash License\nsource: https://unsplash.com/photos/KuURTb48srY",
+   "file_url": "/images/nature/reka-marincsak-KuURTb48srY-unsplash.jpg",
+   "id": 3
+  },
+  {
+   "description": "Photo by Luiza Braun is licensed under Unsplash License\nsource: https://unsplash.com/photos/OGRLnZJLkAs",
+   "file_url": "/images/nature/luiza-braun-OGRLnZJLkAs-unsplash.jpg",
+   "name": "Cerro Torre - El Chaltén - Patagonia Argentina - 2008 trip with a small Canon camera",
+   "id": 10
+  }
+ ]
+}

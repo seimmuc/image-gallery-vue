@@ -1,0 +1,28 @@
+{
+ "name": "animals",
+ "size": 4,
+ "posts": [
+  {
+   "description": "Photo by Brad West is licensed under Unsplash License\nsource: https://unsplash.com/photos/zgeZNzZ4qDI",
+   "file_url": "/images/animals/brad-west-zgeZNzZ4qDI-unsplash.jpg",
+   "name": "Red winged blackbird at Matthaei Botanical Gardens, Ann Arbor, Michigan.",
+   "id": 6
+  },
+  {
+   "description": "Photo by Daniel Diesenreither is licensed under Unsplash License\nsource: https://unsplash.com/photos/FRgzavhCmEY",
+   "file_url": "/images/animals/daniel-diesenreither-FRgzavhCmEY-unsplash.jpg",
+   "id": 7
+  },
+  {
+   "description": "Photo by Luiza Braun is licensed under Unsplash License\nsource: https://unsplash.com/photos/2wUxND7BUEQ",
+   "file_url": "/images/animals/luiza-braun-2wUxND7BUEQ-unsplash.jpg",
+   "name": "Owl",
+   "id": 8
+  },
+  {
+   "description": "Photo by moments is licensed under Unsplash License\nsource: https://unsplash.com/photos/pN2JS4eNmME",
+   "file_url": "/images/animals/moments-pN2JS4eNmME-unsplash.jpg",
+   "id": 9
+  }
+ ]
+}

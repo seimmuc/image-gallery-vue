@@ -1,0 +1,18 @@
+{
+ "description": "Photo by mos design is licensed under Unsplash License\nsource: https://unsplash.com/photos/P1SlUMCpX44",
+ "file_url": "/images/architecture/mos-design-P1SlUMCpX44-unsplash.jpg",
+ "id": 11,
+ "pools": [
+  {
+   "name": "architecture",
+   "size": 1,
+   "index": 0
+  },
+  {
+   "name": "all",
+   "size": 11,
+   "index": 10,
+   "previd": 10
+  }
+ ]
+}

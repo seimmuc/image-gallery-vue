@@ -1,0 +1,18 @@
+{
+ "name": "not-food",
+ "size": 2,
+ "posts": [
+  {
+   "description": "Photo by Stéphanie Kilgast is licensed under CC BY-NC-ND 2.0\nsource: https://flic.kr/p/6xYGLp",
+   "file_url": "/images/not-food/3643658623_a9c3e995ff_w.jpg",
+   "name": "Yellow Breakfast tray",
+   "id": 4
+  },
+  {
+   "description": "Photo by Stéphanie Kilgast is licensed under CC BY-NC-ND 2.0\nsource: https://flic.kr/p/6wehGt",
+   "file_url": "/images/not-food/3623871347_8b95ecc656_w.jpg",
+   "name": "Miniature Tropical Earrings",
+   "id": 5
+  }
+ ]
+}

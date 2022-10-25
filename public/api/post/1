@@ -1,0 +1,20 @@
+{
+ "description": "Photo by kazuend is licensed under Unsplash License\nsource: https://unsplash.com/photos/19SC2oaVZW0",
+ "file_url": "/images/nature/kazuend-19SC2oaVZW0-unsplash.jpg",
+ "name": "Bamboo leaf canopy",
+ "id": 1,
+ "pools": [
+  {
+   "name": "nature",
+   "size": 4,
+   "index": 0,
+   "nextid": 2
+  },
+  {
+   "name": "all",
+   "size": 11,
+   "index": 0,
+   "nextid": 2
+  }
+ ]
+}
