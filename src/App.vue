@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <nav id="topbar">
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/post/1">Pools</RouterLink>
+      <RouterLink :to="{name: 'pool', params: {name: 'all'}}">Pools</RouterLink>
       <RouterLink :to="{name: 'post', params: {id: 1}, query: {pool: 'all'}}">Post</RouterLink>
       <RouterLink to="/about">About</RouterLink>
     </nav>
@@ -27,7 +27,10 @@ nav#topbar {
   font-size: 15px;
   text-align: center;
   margin-top: 0rem;
-  padding: 8px 10px;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+  background-color: honeydew;
+  border: 1px solid var(--color-border);
 }
 
 nav a.router-link-exact-active {
@@ -40,7 +43,7 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   display: inline-block;
-  padding: 0 1rem;
+  padding: 0.4rem 1rem;
   border-left: 1px solid var(--color-border);
 }
 

@@ -42,6 +42,9 @@ def convert_pic_data(old_pic_data: Dict[str, str]) -> Optional[Dict[str, Union[s
     return result
 
 
+def slugify_category_name(name: str) -> str:
+    return name.lower().replace(' ', '-')
+
 def assert_valid_filename(filename: str):
     if os.path.sep in filename:
         raise RuntimeError(f'{filename} contains a path separator')
@@ -63,6 +66,7 @@ def main():
     api_path = Path('api')
     pools_path = Path(api_path, 'pool')
     images_path = Path(api_path, 'post')
+    categories_path = Path(api_path, 'home')
 
     # ensure we have everything ready and load pics data
     if not api_path.is_dir():
@@ -72,7 +76,7 @@ def main():
     print(f'Loaded {len(pics_data)} images')
 
     # init vars
-    categories: set = {p['category'] for p in pics_data}
+    categories: dict = {slugify_category_name(p['category']): None for p in pics_data}
     by_category: Dict[str, List[Dict[str, Any]]] = {c: [] for c in categories}
     all_pics: List[Dict[str, Any]] = []
     files: Dict[Path, Dict] = {}  # json data ready to be saved at given api path
@@ -80,19 +84,24 @@ def main():
 
     for pic_data in pics_data:
         assert_valid_filename(pic_data['file'])
-        assert_valid_filename(pic_data['category'])
+        assert_valid_filename(slugify_category_name(pic_data['category']))
         pic = convert_pic_data(pic_data)
         if pic is None:
             continue
         pic_id += 1
         pic['id'] = pic_id
-        category_list = by_category[pic_data['category']]
+        category_list = by_category[slugify_category_name(pic_data['category'])]
         category_list.append(pic)
         all_pics.append(pic)
     print(f'Processed {len(all_pics)} images')
 
     # create APIs
-    categories_preview: List[Dict[str, Any]] = []
+    category_previews: List[Dict[str, Any]] = []
+    category_previews.append({
+        'name': 'all',
+        'size': len(all_pics),
+        'posts': list(reversed(all_pics))[:3]
+    })
     for category_name, pic_list in by_category.items():
 
         pool_api = {
@@ -102,6 +111,12 @@ def main():
         }
         files[Path(pools_path, category_name)] = pool_api
 
+        category_previews.append({
+            'name': category_name,
+            'size': len(pic_list),
+            'posts': pic_list[:3]
+        })
+
         for i, pic in enumerate(pic_list):
             p = pic.copy()
             category_pool = define_post_pool(pool_name=category_name, pic_list=pic_list, current_pic_index=i)
@@ -109,8 +124,16 @@ def main():
             p['pools'] = [category_pool, all_pool]
             files[Path(images_path, str(p['id']))] = p
     
+    all_pool_api = {
+        'name': 'all',
+        'size': len(all_pics),
+        'posts': all_pics
+    }
+    files[Path(pools_path, 'all')] = all_pool_api
+    files[categories_path] = {'pools': category_previews}
 
     # clear api directory and save new files to disk
+    categories_path.unlink(missing_ok=True)
     for p in (pools_path, images_path):
         if p.is_dir():
             shutil.rmtree(p)

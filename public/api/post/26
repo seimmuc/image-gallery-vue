@@ -1,0 +1,22 @@
+{
+ "description": "Photo by David Stanley is licensed under Attribution 2.0 Generic (CC BY 2.0)\nsource: https://flic.kr/p/csFutC",
+ "file_url": "/images/architecture/7521858506_551c1f71eb_c.jpg",
+ "name": "Cathedral of Lima",
+ "id": 26,
+ "pools": [
+  {
+   "name": "architecture",
+   "size": 5,
+   "index": 3,
+   "previd": 24,
+   "nextid": 29
+  },
+  {
+   "name": "all",
+   "size": 31,
+   "index": 25,
+   "previd": 25,
+   "nextid": 27
+  }
+ ]
+}

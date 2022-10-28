@@ -25,11 +25,30 @@ export interface IHome {
 }
 
 /**
- * Fetches and returns post object for the given post ID
+ * Fetches and returns post object with the given post ID
  * @param postId post ID as an integer
  * @returns post object if one was returned successfully by the API
- * @throws SyntaxError if API did not return JSON data
+ * @throws SyntaxError if API returned non-JSON data
  */
 export async function fetchPost(postId: number): Promise<IPost | null> {
   return await fetch(`/api/post/${postId}`).then(r => r.status == 200 ? r.json() : null);
+}
+
+/**
+ * Fetches and returns pool object with the given pool name
+ * @param poolName name of the pool
+ * @returns pool object if one was returned successfully by the API
+ * @throws SyntaxError if API returned non-JSON data
+ */
+export async function fetchPool(poolName: string): Promise<IPool | null> {
+  return await fetch(`/api/pool/${poolName}`).then(r => r.status == 200 ? r.json() : null);
+}
+
+/**
+ * Fetches and returns home object containing gallery's categories
+ * @returns home object if one was returned successfully by the API
+ * @throws SyntaxError if API returned non-JSON data
+ */
+export async function fetchHome(): Promise<IHome | null> {
+  return await fetch(`/api/home`).then(r => r.status == 200 ? r.json() : null);
 }

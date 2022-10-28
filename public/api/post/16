@@ -1,0 +1,22 @@
+{
+ "description": "Photo by Juliana Chong is licensed under Attribution 2.0 Generic (CC BY 2.0)\nsource: https://flic.kr/p/vjz5Zd",
+ "file_url": "/images/animals/19244498670_29a1191b44_c.jpg",
+ "name": "Red Panda @ Singapore River Safari",
+ "id": 16,
+ "pools": [
+  {
+   "name": "animals",
+   "size": 8,
+   "index": 6,
+   "previd": 15,
+   "nextid": 17
+  },
+  {
+   "name": "all",
+   "size": 31,
+   "index": 15,
+   "previd": 15,
+   "nextid": 17
+  }
+ ]
+}
