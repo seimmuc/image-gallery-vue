@@ -12,7 +12,7 @@ const props = defineProps<{
   <div class="post-container">
     <h1 v-if="post && post.name">{{post.name}}</h1>
     <div class="image-container">
-      <img class="post-image" :src="post? post.file_url : ''">
+      <img class="post-image" :src="post?.file_url" :alt="post?.description">
       <div v-if="gotoPrev" @click="gotoPrev" class="side-navigation side-navigation-left">
         <font-awesome-icon icon="fa-solid fa-chevron-left" />
       </div>

@@ -1,0 +1,12 @@
+// Vitest Snapshot v1
+
+exports[`Post component > empty post 1`] = `
+"<div class=\\"post-container\\" data-v-a0662bbd=\\"\\">
+  <!--v-if-->
+  <div class=\\"image-container\\" data-v-a0662bbd=\\"\\"><img class=\\"post-image\\" data-v-a0662bbd=\\"\\">
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+</div>"
+`;
