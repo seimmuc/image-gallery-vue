@@ -3,7 +3,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
 import { routes } from '../../router/index';
 import PostView from '../PostView.vue';
-import { createRouter, createWebHistory, type Router } from 'vue-router';
+import { createWebHistory } from 'vue-router';
+import { createRouterMock, injectRouterMock, type RouterMock, getRouter } from 'vue-router-mock'
 import createFetchMock from 'vitest-fetch-mock';
 import postData from './PostView.data.json';
 
@@ -22,24 +23,29 @@ fetchMock.doMock((req) => {
 });
 
 describe('PostView', () => {
-
-  let router: Router;
-  beforeEach(async () => {
-    router = createRouter({
-      history: createWebHistory(import.meta.env.BASE_URL),
-      routes: routes,
-    });
-    // router.push('/');
-    // await router.isReady();
+  const router: RouterMock = createRouterMock({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes: routes,
+    spy: {
+      create: fn => vi.fn(fn),
+      reset: spy => spy.mockReset(),
+    },
   });
+  beforeEach(() => {
+    injectRouterMock(router);
+  })
 
   it('first post', async () => {
+    // make sure router mocking worked
+    expect(getRouter()).toBe(router);
+    
+    const wrapper = mount(PostView, {global: mountGlobal});
+
     router.push({name: 'post', params: {id: 1}});
-    await router.isReady();
-    const wrapper = mount(PostView, {global: {...mountGlobal, plugins: [router]}});
-    wrapper.vm.$router.push({name: 'post', params: {id: 1}});
+    router.setParams({id: 1});
     await flushPromises();
-    expect(wrapper.vm.$router).toBe(router);
+    // await wrapper.vm.$nextTick();
+    // wrapper.vm.$router
     
     expect(wrapper.html()).toMatchSnapshot();
   });
