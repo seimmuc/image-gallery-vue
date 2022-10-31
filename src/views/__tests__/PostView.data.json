@@ -1,0 +1,61 @@
+{
+  "1": {
+    "description": "first post",
+    "file_url": "/images/first_image.png",
+    "name": "First",
+    "id": 1,
+    "pools": [
+      {
+        "name": "testpool",
+        "size": 2,
+        "index": 0,
+        "nextid": 3
+      },
+      {
+        "name": "all",
+        "size": 3,
+        "index": 0,
+        "nextid": 2
+      }
+    ]
+   },
+  "2": {
+    "description": "second post",
+    "file_url": "/images/image2.png",
+    "id": 2,
+    "pools": [
+      {
+        "name": "all",
+        "size": 3,
+        "index": 1,
+        "previd": 1,
+        "nextid": 3
+      }
+    ]
+  },
+  "3": {
+    "description": "another post",
+    "file_url": "/images/last.jpg",
+    "name": "Last",
+    "id": 1,
+    "pools": [
+      {
+        "name": "testpool",
+        "size": 2,
+        "index": 1,
+        "previd": 1
+      },
+      {
+        "name": "all",
+        "size": 3,
+        "index": 0,
+        "previd": 2
+      }
+    ]
+  },
+  "4": {
+    "description": "poolless post",
+    "file_url": "/images/poolless.png",
+    "id": 4
+  }
+}
