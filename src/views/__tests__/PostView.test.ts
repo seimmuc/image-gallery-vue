@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterAll, beforeAll } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterAll, beforeAll, afterEach } from 'vitest'
 
 import { flushPromises, mount } from '@vue/test-utils'
 import { routes } from '../../router/index';
@@ -23,7 +23,7 @@ import { startMocking, stopMocking } from './TestDataMocker';
 describe('PostView', () => {
   const mountGlobal = { stubs: ['FontAwesomeIcon'] };
   const router: RouterMock = createRouterMock({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHistory(),
     routes: routes,
     spy: {
       create: fn => vi.fn(fn),
@@ -41,6 +41,9 @@ describe('PostView', () => {
   
   beforeEach(() => {
     injectRouterMock(router);
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
   });
   
   it('api mocking', async () => {
@@ -70,5 +73,51 @@ describe('PostView', () => {
     await flushPromises();
     
     expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('navigation buttons', async () => {
+    const buttonsPresent = () => ['left', 'right'].map(s => wrapper.find(`.side-navigation-${s}`).exists());
+
+    const wrapper = mount(PostView, {global: mountGlobal});
+
+    // router.push.impl = async (to: RouteLocationRaw) => {
+    //   const {params, query} = router.resolve(to);
+    //   router.setParams(params);
+    //   router.setQuery(query);
+    // }
+
+    // 1st post (testpool)
+    router.setParams({id: 1});
+    router.setQuery({pool: 'testpool'});
+    await flushPromises();
+    expect(buttonsPresent()).toEqual([false, true]);
+    wrapper.find('.side-navigation-right').trigger('click');
+    expect(router.push).toHaveBeenCalledTimes(1);
+    expect(router.push).toHaveBeenLastCalledWith(expect.objectContaining({name: 'post', params: {id: 3}, query: {pool: 'testpool'}}));
+    expect(wrapper.html()).toMatchSnapshot();
+
+    // 3rd post (testpool)
+    router.setParams({id: 3});
+    router.setQuery({pool: 'testpool'});
+    await flushPromises();
+    expect(buttonsPresent()).toEqual([true, true]);
+    wrapper.find('.side-navigation-left').trigger('click');
+    expect(router.push).toHaveBeenCalledTimes(2);
+    expect(router.push).toHaveBeenLastCalledWith(expect.objectContaining({name: 'post', params: {id: 1}, query: {pool: 'testpool'}}));
+    wrapper.find('.side-navigation-right').trigger('click');
+    expect(router.push).toHaveBeenCalledTimes(3);
+    expect(router.push).toHaveBeenLastCalledWith(expect.objectContaining({name: 'post', params: {id: 5}, query: {pool: 'testpool'}}));
+    expect(wrapper.html()).toMatchSnapshot();
+
+    // 5th post (all)
+    router.setParams({id: 5});
+    router.setQuery({pool: 'all'});
+    await flushPromises();
+    expect(buttonsPresent()).toEqual([true, false]);
+    wrapper.find('.side-navigation-left').trigger('click');
+    expect(router.push).toHaveBeenCalledTimes(4);
+    expect(router.push).toHaveBeenLastCalledWith(expect.objectContaining({name: 'post', params: {id: 4}, query: {pool: 'all'}}));
+    expect(wrapper.html()).toMatchSnapshot();
+    
   });
 });
