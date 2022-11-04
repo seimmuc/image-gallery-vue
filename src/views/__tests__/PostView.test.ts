@@ -6,19 +6,9 @@ import PostView from '../PostView.vue';
 import { createWebHistory } from 'vue-router';
 import { createRouterMock, injectRouterMock, type RouterMock, getRouter } from 'vue-router-mock'
 import createFetchMock from 'vitest-fetch-mock';
-import { fetchHome, fetchPool, fetchPost } from '@/api';// '../../api';
+import { fetchHome, fetchPool, fetchPost } from '@/api';
 import { startMocking, stopMocking } from './TestDataMocker';
 
-
-// vi.mock("@/api", async () => {
-//   const api: object = await vi.importActual('@/api');
-//   return {
-//     ...api,
-//     getPost: async (): Promise<IPost> => {
-//       return {id: 1, description: 'string', file_url: 'strings'}
-//     }
-//   }
-// });
 
 describe('PostView', () => {
   const mountGlobal = { stubs: ['FontAwesomeIcon'] };
@@ -47,6 +37,7 @@ describe('PostView', () => {
   });
   
   it('api mocking', async () => {
+    // Makes sure the API fetch mock is working. This mostly tests the testing environment rather than production code.
     const home = await fetchHome();
     expect(home?.pools.find(p => p.name == 'all')?.size).toEqual(5);
     expect(home?.pools.find(p => p.name == 'onepostpool')?.posts?.map(p => p.id)).toEqual([4]);
@@ -63,28 +54,24 @@ describe('PostView', () => {
   });
 
   it('first post', async () => {
+    // just a simple post render test
+
     // make sure router mocking worked
     expect(getRouter()).toBe(router);
     
     const wrapper = mount(PostView, {global: mountGlobal});
-
-    router.push({name: 'post', params: {id: 1}});
+    router.push({name: 'post'});
     router.setParams({id: 1});
     await flushPromises();
-    
+
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('navigation buttons', async () => {
+    // checks for presense and function of the navigation buttons. Mocked router will prevent actual navigation from happening.
     const buttonsPresent = () => ['left', 'right'].map(s => wrapper.find(`.side-navigation-${s}`).exists());
 
     const wrapper = mount(PostView, {global: mountGlobal});
-
-    // router.push.impl = async (to: RouteLocationRaw) => {
-    //   const {params, query} = router.resolve(to);
-    //   router.setParams(params);
-    //   router.setQuery(query);
-    // }
 
     // 1st post (testpool)
     router.setParams({id: 1});
@@ -118,6 +105,5 @@ describe('PostView', () => {
     expect(router.push).toHaveBeenCalledTimes(4);
     expect(router.push).toHaveBeenLastCalledWith(expect.objectContaining({name: 'post', params: {id: 4}, query: {pool: 'all'}}));
     expect(wrapper.html()).toMatchSnapshot();
-    
   });
 });
