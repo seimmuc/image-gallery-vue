@@ -1,3 +1,14 @@
+@use "sass:color";
+@use "sass:math";
+
+/*
+https://coolors.co/palette/cdb4db-ffc8dd-ffafcc-bde0fe-a2d2ff
+https://coolors.co/palette/231942-5e548e-9f86c0-be95c4-e0b1cb
+https://coolors.co/palette/f08080-f4978e-f8ad9d-fbc4ab-ffdab9
+https://coolors.co/palette/221526-440018-330010-07203c-030f2b
+*/
+
+
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
@@ -36,18 +47,64 @@
   --section-gap: 160px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
+/* @media (prefers-color-scheme: dark) { */
+:root.theme-dark {
+  --color-background: var(--vt-c-black);
+  --color-background-soft: var(--vt-c-black-soft);
+  --color-background-mute: var(--vt-c-black-mute);
 
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
+  --color-border: var(--vt-c-divider-dark-2);
+  --color-border-hover: var(--vt-c-divider-dark-1);
 
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
-  }
+  --color-heading: var(--vt-c-text-dark-1);
+  --color-text: var(--vt-c-text-dark-2);
+}
+/* } */
+
+:root, :root.theme-light {
+  $base-color: #efefef;
+  --color-background: #{$base-color};
+  --color-container-bg: #{color.scale($base-color, $lightness: -10%)};
+}
+// :root.theme-dark {
+//   $base-color: #101010;
+//   --color-background: #{$base-color};
+//   /*--color-container-bg: color.scale($base-color, $lightness: +10%);*/
+//   --color-container-bg: #{color.adjust(#101010, $lightness: +30%)};
+//   --color-navbar-bg: #{color.adjust(#101010, $lightness: +40%)};
+// }
+:root.theme-dark-blue {
+  $background-base: #2E2E2E;
+  $text-base: #F1D5E0;
+
+  --color-navbar-bg: #221526;
+  --color-navbar-fg: #A2D2FF;
+  --color-background: #{$background-base};
+  
+  --color-home-text: #{$text-base};
+
+  --color-title-text: #{color.adjust($text-base, $saturation: -15%)};
+  --color-desc-text: #{color.adjust($text-base, $saturation: -25%, $alpha: -0.075)};
+}
+:root.theme-dark {
+  $background-base: #242424;
+  $text-base: #BDAF86;
+
+  --color-background: #{$background-base};
+  
+  --color-navbar-bg: #000;
+  --color-navbar-hover-bg: #282828;
+  --color-navbar-current-bg: #181818;
+  --color-navbar-txt: #DDD;
+  --color-navbar-hover-txt: #EEE;
+  --color-navbar-current-txt: #AAA;
+  
+  --color-home-text: #BDAF86;
+
+  --color-post-bg: #{color.adjust($background-base, $lightness: -5%)};
+  --color-post-desc-bg: #{color.adjust($background-base, $lightness: -7.5%)};
+  --color-post-title-txt: #fff;
+  --color-post-desc-txt: rgba(185, 185, 185, 0.925);
 }
 
 *,

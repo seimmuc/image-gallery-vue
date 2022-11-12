@@ -121,6 +121,7 @@ const rightPost: ComputedRef<IPost | undefined> = computed(() => getPostAt('righ
     text-align: center;
     font-size: 2.2em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--color-home-text);
     font-weight: bold;
     text-transform: capitalize;
     // text-shadow: 1px 2px 4px lightgray;

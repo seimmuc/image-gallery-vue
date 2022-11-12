@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+
+if (true || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  console.log('enabling dark mode');
+  document.documentElement.classList.remove('theme-light');
+  document.documentElement.classList.add('theme-dark');
+} else {
+  console.log('enabling light mode');
+  document.documentElement.classList.remove('theme-dark');
+  document.documentElement.classList.add('theme-light');
+}
 </script>
 
 <template>
@@ -14,7 +24,7 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -29,22 +39,26 @@ nav#topbar {
   margin-top: 0rem;
   margin-bottom: 1.5rem;
   padding: 0 1rem;
-  background-color: honeydew;
+  background-color: var(--color-navbar-bg);
   border: 1px solid var(--color-border);
-}
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
+  a {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-left: 1px solid var(--color-border);
+    color: var(--color-navbar-txt);
+    &:hover {
+      color: var(--color-navbar-hover-txt);
+      background-color: var(--color-navbar-hover-bg);
+    }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0.4rem 1rem;
-  border-left: 1px solid var(--color-border);
+    &.router-link-exact-active {
+      color: var(--color-navbar-current-txt);
+      background-color: var(--color-navbar-current-bg);
+      pointer-events: none;
+      // cursor: default;
+    }
+  }
 }
 
 nav a:first-of-type {

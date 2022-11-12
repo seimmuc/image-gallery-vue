@@ -54,12 +54,9 @@ function gotoNext(e: MouseEvent) {
 </template>
 
 <style scoped>
-.image-container {
+main {
   display: flex;
-}
-
-.navigate {
-  overflow: hidden;
-  white-space: nowrap;
+  flex-direction: row;
+  justify-content: center;
 }
 </style>
