@@ -117,10 +117,10 @@ $title-fade: 0.75em;
   top: 50%;
 }
 .fa-chevron-right {
-  right: 10%;
+  right: math.div($padding-sides, 2.6);
 }
 .fa-chevron-left {
-  left: 10%;
+  left: math.div($padding-sides, 2.6);
 }
 
 /* @media (min-width: 1024px) {
