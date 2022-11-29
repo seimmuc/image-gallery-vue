@@ -7,13 +7,11 @@ const props = withDefaults(defineProps<{
   pauseFor?: number
   textSpeed?: number
   resizeObserve?: boolean
-  resizeAnimDelay?: number
 }>(), {
   color: undefined,
   pauseFor: 3000,
   textSpeed: 75,
-  resizeObserve: false,
-  resizeAnimDelay: 2000
+  resizeObserve: true
 });
 
 const eBox: Ref<HTMLDivElement | null> = ref(null);
@@ -27,43 +25,44 @@ onMounted(() => {
   if (!eTxt.value || !eBox.value)
     return;
   
-  const resizeObserver = new ResizeObserver(entries => {
-    for (let entry of entries) {
-      if (entry.target !== eBox.value) {
-        continue;
-      }
-      if (eBox.value != null && eBox.value.clientWidth > 0) {
+  if (props.resizeObserve) {
+    const resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        if (entry.target !== eBox.value) {
+          continue;
+        }
         updateBox();
       }
-    }
-  });
-  resizeObserver.observe(eBox.value);
+    });
+    resizeObserver.observe(eBox.value);
+  } else {
+    updateBox();
+  }
 });
 
 onUpdated(() => {
-  if (eBox.value != null && eBox.value.clientWidth > 0) {
-    updateBox();
-  }
-})
+  updateBox();
+});
 
 function updateBox() {
-  if (!eTxt.value || !eBox.value)
+  if (!eTxt.value || !eBox.value || eBox.value.clientWidth <= 0)
     return;
   if (anim != null) {
     const a = anim;
     anim = null;
-    a.finish();
     a.cancel();
   }
   const boxWidth = eBox.value.clientWidth;
   const tcs = getComputedStyle(eTxt.value);
   const txtWidth = eTxt.value.clientWidth - parseFloat(tcs.paddingLeft) - parseFloat(tcs.paddingRight)
+  console.log(`box width: ${boxWidth}, text width: ${txtWidth}`);
   isLong.value = txtWidth > boxWidth;
   if (isLong.value) {
     const {textKeyframes, timing} = generateAnimation(boxWidth, txtWidth - boxWidth, props.textSpeed);
     anim = eTxt.value.animate(textKeyframes, timing);
-    console.log('1');
     anim.finished.then(textSwitchDirections);
+    anim.reverse();
+    anim.finish();
   }
 }
 
@@ -72,6 +71,9 @@ function textSwitchDirections(animation: Animation) {
     return;
   }
   new Promise(resolve => setTimeout(resolve, props.pauseFor)).then(() => {
+    if (animation != anim) {
+      return;
+    }
     animation.reverse();
     if (hovered)
       animation.pause();
@@ -102,7 +104,6 @@ function onBoxHoverEnd() {
   if (anim && anim.playState == 'paused')
     anim.play();
 }
-
 </script>
 
 <template>

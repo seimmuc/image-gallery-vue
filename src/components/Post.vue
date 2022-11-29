@@ -12,7 +12,7 @@ const props = defineProps<{
 <template>
   <div class="post-container">
     <div class="image-container" :class="{titleless: !(post && post.name)}">
-      <ScrollingText v-if="post && post.name" :text="post.name" />
+      <ScrollingText v-if="post && post.name" :text="post.name" :resize-observe="true" />
       <img class="post-image" :src="post?.file_url" :alt="post?.description">
       <div v-if="gotoPrev" @click="gotoPrev" class="side-navigation side-navigation-left">
         <font-awesome-icon icon="fa-solid fa-chevron-left" />
