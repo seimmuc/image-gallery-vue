@@ -71,7 +71,8 @@ $title-fade: 0.75em;
   align-self: start;
   border-bottom-left-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
-  width: 100%;
+  min-width: 100%;
+  max-width: fit-content;
 }
 .image-container {
   padding: 0 $padding-sides $padding-desc-spacer;
