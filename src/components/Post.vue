@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { IPost } from '../api';
+import ScrollingText from './ScrollingText.vue';
 
 const props = defineProps<{
   post: IPost | null
@@ -11,7 +12,7 @@ const props = defineProps<{
 <template>
   <div class="post-container">
     <div class="image-container" :class="{titleless: !(post && post.name)}">
-      <h1 v-if="post && post.name" :title="post.name">{{post.name}}</h1>
+      <ScrollingText v-if="post && post.name" :text="post.name" />
       <img class="post-image" :src="post?.file_url" :alt="post?.description">
       <div v-if="gotoPrev" @click="gotoPrev" class="side-navigation side-navigation-left">
         <font-awesome-icon icon="fa-solid fa-chevron-left" />
@@ -20,7 +21,7 @@ const props = defineProps<{
         <font-awesome-icon icon="fa-solid fa-chevron-right" />
       </div>
     </div>
-    <p v-if="post && post.description">{{post.description}}</p>
+    <p v-if="post && post.description" class="description">{{post.description}}</p>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ $padding-sides: 45px;
 $padding-desc-spacer: 30px;
 $title-padding: 66px;
 $title-size: 30px;
+$title-fade: 0.75em;
 
 .post-container {
   width: fit-content;
@@ -46,24 +48,22 @@ $title-size: 30px;
   border-radius: $border-radius;
   overflow: hidden;
 }
-h1 {
-  width: 0;
-  min-width: 100%;
+.image-container :deep(.scrolltext-text) {
   z-index: 2;
   font-size: $title-size;
   line-height: #{$title-size * 1.5};
   margin: math.div($title-padding - $title-size * 1.5, 2) 0;
   color: var(--color-post-title-txt);
   cursor: default;
-  text-align: center;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  &.long {
+    padding: 0 calc($title-fade * 0.6);
+  }
 }
-// h1:hover {
-//   white-space: initial;
-// }
-p {
+.image-container :deep(.scrolltext-box:not(.fits)) {
+  mask-image: linear-gradient(to right, transparent 0%, black $title-fade, black calc(100% - $title-fade), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black $title-fade, black calc(100% - $title-fade), transparent 100%);
+}
+.description {
   white-space: pre-line;
   color: var(--color-post-desc-txt, #111);
   background-color: var(--color-post-desc-bg, white);
