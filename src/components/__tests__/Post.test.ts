@@ -16,9 +16,9 @@ describe('Post component', () => {
   it('standalone post', () => {
     const postData: IPost = {id: 1, name: 'Test Post', description: 'just a standalone post', file_url: '/image1.png'}
     const wrapper = mount(Post, {props: {post: postData, gotoPrev: null, gotoNext: null}, global: mountGlobal});
-    expect(wrapper.get('h1').text()).toEqual(postData.name);
+    expect(wrapper.get('.scrolltext-text').text()).toEqual(postData.name);
     expect(wrapper.get('.post-image').attributes('src')).toEqual(postData.file_url);
-    expect(wrapper.get('p').text()).toEqual(postData.description);
+    expect(wrapper.get('.description').text()).toEqual(postData.description);
   });
 
   it.each([

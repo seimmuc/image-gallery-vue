@@ -3,12 +3,14 @@
 exports[`PostView > first post 1`] = `
 "<main class=\\"post-view\\" data-v-5298551c=\\"\\">
   <div class=\\"post-container\\" data-v-a0662bbd=\\"\\" data-v-5298551c=\\"\\">
-    <h1 data-v-a0662bbd=\\"\\">First</h1>
-    <div class=\\"image-container\\" data-v-a0662bbd=\\"\\"><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/first_image.png\\" alt=\\"first post\\">
+    <div class=\\"image-container\\" data-v-a0662bbd=\\"\\">
+      <div class=\\"scrolltext-box fits\\" data-v-b6176206=\\"\\" data-v-a0662bbd=\\"\\">
+        <p class=\\"scrolltext-text\\" data-v-b6176206=\\"\\">First</p>
+      </div><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/first_image.png\\" alt=\\"first post\\">
       <!--v-if-->
       <!--v-if-->
     </div>
-    <p data-v-a0662bbd=\\"\\">first post</p>
+    <p class=\\"description\\" data-v-a0662bbd=\\"\\">first post</p>
   </div>
 </main>"
 `;
@@ -16,14 +18,16 @@ exports[`PostView > first post 1`] = `
 exports[`PostView > navigation buttons 1`] = `
 "<main class=\\"post-view\\" data-v-5298551c=\\"\\">
   <div class=\\"post-container\\" data-v-a0662bbd=\\"\\" data-v-5298551c=\\"\\">
-    <h1 data-v-a0662bbd=\\"\\">First</h1>
-    <div class=\\"image-container\\" data-v-a0662bbd=\\"\\"><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/first_image.png\\" alt=\\"first post\\">
+    <div class=\\"image-container\\" data-v-a0662bbd=\\"\\">
+      <div class=\\"scrolltext-box fits\\" data-v-b6176206=\\"\\" data-v-a0662bbd=\\"\\">
+        <p class=\\"scrolltext-text\\" data-v-b6176206=\\"\\">First</p>
+      </div><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/first_image.png\\" alt=\\"first post\\">
       <!--v-if-->
       <div class=\\"side-navigation side-navigation-right\\" data-v-a0662bbd=\\"\\">
         <font-awesome-icon-stub icon=\\"fa-solid fa-chevron-right\\" data-v-a0662bbd=\\"\\"></font-awesome-icon-stub>
       </div>
     </div>
-    <p data-v-a0662bbd=\\"\\">first post</p>
+    <p class=\\"description\\" data-v-a0662bbd=\\"\\">first post</p>
   </div>
 </main>"
 `;
@@ -31,8 +35,8 @@ exports[`PostView > navigation buttons 1`] = `
 exports[`PostView > navigation buttons 2`] = `
 "<main class=\\"post-view\\" data-v-5298551c=\\"\\">
   <div class=\\"post-container\\" data-v-a0662bbd=\\"\\" data-v-5298551c=\\"\\">
-    <!--v-if-->
-    <div class=\\"image-container\\" data-v-a0662bbd=\\"\\"><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/nameless_image.gif\\" alt=\\"nameless post\\">
+    <div class=\\"image-container titleless\\" data-v-a0662bbd=\\"\\">
+      <!--v-if--><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/nameless_image.gif\\" alt=\\"nameless post\\">
       <div class=\\"side-navigation side-navigation-left\\" data-v-a0662bbd=\\"\\">
         <font-awesome-icon-stub icon=\\"fa-solid fa-chevron-left\\" data-v-a0662bbd=\\"\\"></font-awesome-icon-stub>
       </div>
@@ -40,7 +44,7 @@ exports[`PostView > navigation buttons 2`] = `
         <font-awesome-icon-stub icon=\\"fa-solid fa-chevron-right\\" data-v-a0662bbd=\\"\\"></font-awesome-icon-stub>
       </div>
     </div>
-    <p data-v-a0662bbd=\\"\\">nameless post</p>
+    <p class=\\"description\\" data-v-a0662bbd=\\"\\">nameless post</p>
   </div>
 </main>"
 `;
@@ -48,14 +52,16 @@ exports[`PostView > navigation buttons 2`] = `
 exports[`PostView > navigation buttons 3`] = `
 "<main class=\\"post-view\\" data-v-5298551c=\\"\\">
   <div class=\\"post-container\\" data-v-a0662bbd=\\"\\" data-v-5298551c=\\"\\">
-    <h1 data-v-a0662bbd=\\"\\">Last</h1>
-    <div class=\\"image-container\\" data-v-a0662bbd=\\"\\"><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/last_image.png\\" alt=\\"last post\\">
+    <div class=\\"image-container\\" data-v-a0662bbd=\\"\\">
+      <div class=\\"scrolltext-box fits\\" data-v-b6176206=\\"\\" data-v-a0662bbd=\\"\\">
+        <p class=\\"scrolltext-text\\" data-v-b6176206=\\"\\">Last</p>
+      </div><img class=\\"post-image\\" data-v-a0662bbd=\\"\\" src=\\"/images/last_image.png\\" alt=\\"last post\\">
       <div class=\\"side-navigation side-navigation-left\\" data-v-a0662bbd=\\"\\">
         <font-awesome-icon-stub icon=\\"fa-solid fa-chevron-left\\" data-v-a0662bbd=\\"\\"></font-awesome-icon-stub>
       </div>
       <!--v-if-->
     </div>
-    <p data-v-a0662bbd=\\"\\">last post</p>
+    <p class=\\"description\\" data-v-a0662bbd=\\"\\">last post</p>
   </div>
 </main>"
 `;
