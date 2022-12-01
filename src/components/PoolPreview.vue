@@ -69,7 +69,7 @@ const rightPost: ComputedRef<IPost | undefined> = computed(() => getPostAt('righ
   text-align: center;
   text-decoration: none;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, .4);
-  transition: all .25s linear;
+  transition: translate .25s linear, rotate .25s linear, scale .25s linear, box-shadow .25s linear;
   position: absolute;
   &:hover {
     z-index: 5;
@@ -125,7 +125,7 @@ const rightPost: ComputedRef<IPost | undefined> = computed(() => getPostAt('righ
     font-weight: bold;
     text-transform: capitalize;
     // text-shadow: 1px 2px 4px lightgray;
-    transition: all .25s linear;
+    transition: bottom .25s linear, scale .25s linear;
     .pool-preview:hover & {
       bottom: 20px;
       // text-shadow: 1px 2px 6px lightgray;
