@@ -45,24 +45,22 @@ nav#topbar {
   a {
     display: inline-block;
     padding: 0.4rem 1rem;
-    border-left: 1px solid var(--color-navbar-border, #7778);
     color: var(--color-navbar-txt);
     &:hover {
       color: var(--color-navbar-hover-txt);
       background-color: var(--color-navbar-hover-bg);
     }
-
     &.router-link-exact-active {
       color: var(--color-navbar-current-txt);
       background-color: var(--color-navbar-current-bg);
       pointer-events: none;
-      // cursor: default;
+    }
+
+    border-left: 1px solid var(--color-navbar-border, #7778);
+    &:last-of-type {
+      border-right: 1px solid var(--color-navbar-border, #7778);
     }
   }
-}
-
-nav a:first-of-type {
-  border: 0;
 }
 
 /* @media (min-width: 1024px) {
