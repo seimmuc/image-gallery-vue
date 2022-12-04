@@ -86,25 +86,52 @@ https://coolors.co/palette/221526-440018-330010-07203c-030f2b
   --color-title-text: #{color.adjust($text-base, $saturation: -15%)};
   --color-desc-text: #{color.adjust($text-base, $saturation: -25%, $alpha: -0.075)};
 }
-:root.theme-dark {
-  $background-base: #242424;
-  $text-base: #BDAF86;
+
+@mixin nav-buttons($bg-color, $txt-color) {
+  --color-post-navbut-color: #{red($bg-color)}, #{green($bg-color)}, #{blue($bg-color)};
+  --color-post-navbut-alpha: #{alpha($bg-color)};
+  --color-post-navbut-text: #{$txt-color};
+}
+
+:root.theme-light {
+  $background-base: #eee;
+  $post-bg: color.adjust($background-base, $lightness: -9%);
+  $desc-bg: color.adjust($background-base, $lightness: -12%);
 
   --color-background: #{$background-base};
-  
+  --color-navbar-bg: #ddd;
+  --color-navbar-hover-bg: #bbb;
+  --color-navbar-current-bg: #c4c4c4;
+  --color-navbar-txt: #222;
+  --color-navbar-hover-txt: #000;
+  --color-navbar-current-txt: #444;
+  --color-navbar-border: #3C3C3C1E;
+  --color-home-text: #4c4c4c;
+  --color-post-bg: #{$post-bg};
+  --color-post-desc-bg: #{$desc-bg};
+  --color-post-title-txt: #333;
+  --color-post-desc-txt: #181818f0;
+  @include nav-buttons($bg-color: color.change($desc-bg, $alpha: 0.75), $txt-color: #000c);
+}
+:root.theme-dark {
+  $background-base: #242424;
+  $post-bg: color.adjust($background-base, $lightness: -5%);
+  $desc-bg: color.adjust($background-base, $lightness: -7.5%);
+
+  --color-background: #{$background-base};
   --color-navbar-bg: #000;
   --color-navbar-hover-bg: #282828;
   --color-navbar-current-bg: #181818;
   --color-navbar-txt: #DDD;
   --color-navbar-hover-txt: #EEE;
   --color-navbar-current-txt: #AAA;
-  
-  --color-home-text: #BDAF86;
-
-  --color-post-bg: #{color.adjust($background-base, $lightness: -5%)};
-  --color-post-desc-bg: #{color.adjust($background-base, $lightness: -7.5%)};
+  --color-navbar-border: #54545479;
+  --color-home-text: #bbb;
+  --color-post-bg: #{$post-bg};
+  --color-post-desc-bg: #{$desc-bg};
   --color-post-title-txt: #fff;
   --color-post-desc-txt: rgba(185, 185, 185, 0.925);
+  @include nav-buttons($bg-color: color.change($desc-bg, $alpha: 0.75), $txt-color: #fffc);
 }
 
 *,

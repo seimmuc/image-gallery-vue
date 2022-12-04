@@ -102,18 +102,19 @@ $title-fade: 0.75em;
 .side-navigation:hover {
   opacity: 1;
 }
+@function navbut_color($alpha: 1) {
+  @return rgba(var(--color-post-navbut-color, 0, 0, 0), calc(var(--color-post-navbut-alpha, 1) * $alpha));
+}
 .side-navigation-left {
   left: 0;
-  background-image: linear-gradient(to right, #00000080, #00000012 75%, #00000000);
-  /* border-top-left-radius: $border-radius; */
+  background-image: linear-gradient(to right, navbut_color(), navbut_color(0.15) 75%, #00000000);
 }
 .side-navigation-right {
   right: 0;
-  background-image: linear-gradient(to left, #00000080, #00000012 75%, #00000000);
-  /* border-top-right-radius: $border-radius; */
+  background-image: linear-gradient(to left, navbut_color(), navbut_color(0.15) 75%, #00000000);
 }
 .fa-chevron-right, .fa-chevron-left {
-  color: white;
+  color: var(--color-post-navbut-text, white);
   position: absolute;
   top: 50%;
 }

@@ -40,12 +40,12 @@ nav#topbar {
   margin-bottom: 1.5rem;
   padding: 0 1rem;
   background-color: var(--color-navbar-bg);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-navbar-border, #7778);
 
   a {
     display: inline-block;
     padding: 0.4rem 1rem;
-    border-left: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-navbar-border, #7778);
     color: var(--color-navbar-txt);
     &:hover {
       color: var(--color-navbar-hover-txt);
