@@ -61,18 +61,6 @@ https://coolors.co/palette/221526-440018-330010-07203c-030f2b
 }
 /* } */
 
-:root, :root.theme-light {
-  $base-color: #efefef;
-  --color-background: #{$base-color};
-  --color-container-bg: #{color.scale($base-color, $lightness: -10%)};
-}
-// :root.theme-dark {
-//   $base-color: #101010;
-//   --color-background: #{$base-color};
-//   /*--color-container-bg: color.scale($base-color, $lightness: +10%);*/
-//   --color-container-bg: #{color.adjust(#101010, $lightness: +30%)};
-//   --color-navbar-bg: #{color.adjust(#101010, $lightness: +40%)};
-// }
 :root.theme-dark-blue {
   $background-base: #2E2E2E;
   $text-base: #F1D5E0;
@@ -93,7 +81,7 @@ https://coolors.co/palette/221526-440018-330010-07203c-030f2b
   --color-post-navbut-text: #{$txt-color};
 }
 
-:root.theme-light {
+:root, :root.theme-light {
   $background-base: #eee;
   $post-bg: color.adjust($background-base, $lightness: -9%);
   $desc-bg: color.adjust($background-base, $lightness: -12%);
@@ -147,7 +135,7 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
+  transition: color 0.25s ease, background-color 0.25s ease;
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
